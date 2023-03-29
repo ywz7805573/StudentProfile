@@ -2,7 +2,7 @@
 import { getCurrentInstance, onMounted , reactive, toRefs, onUnmounted, watch} from 'vue';
 
 export default{
-    name:'radar',
+    name:'radar_10',
     props:{
         chartName:String,
         chartData:Object,
@@ -23,7 +23,7 @@ export default{
             dataMap.option = {
                 color: ['rgba(64, 119, 255, 0.6)', 'rgba(236, 112, 192, 0.6)'],
                 title: {
-                    text: '学生综合素养：三大维度'
+                    text: '学生综合素养：10类指标'
                 },
                 legend: {
                     data: ['个人综合素养水平', '平均水平']
@@ -31,16 +31,52 @@ export default{
                 radar: {
                     // shape: 'circle',
                     indicator: [
-                    { name: '自主发展', max: 100 },
-                    { name: '社会参与', max: 100 },
-                    { name: '文化修养', max: 100 },
+                    { name: '身心健康', max: 100 },
+                    { name: '自我管理', max: 100 },
+                    { name: '问题解决与创新', max: 100 },
+                    { name: '人文与审美', max: 100 },
+                    { name: '语言与沟通', max: 100 },
+                    { name: '科技与应用', max: 100 },
+                    { name: '公民道德', max: 100 },
+                    { name: '社会责任', max: 100 },
+                    { name: '国家认同', max: 100 },
+                    { name: '国际理解', max: 100 },
                     ]
                 },
                 series: [
                     {
-                    name: '学生综合素养对比',
-                    type: 'radar',
-                    data: dataMap.chartData
+                        name: '学生综合素养对比',
+                        type: 'radar',
+                        data: [
+                            {
+                                value: dataMap.chartData[0],
+                                name: '个人综合素养水平',
+                                label: {
+                                show: true,
+                                formatter: function (params) {
+                                    return params.value;
+                                    }
+                                },
+                                areaStyle: { // 区域样式
+                                    color: '#4077FF',
+                                    opacity: 0.1
+                                },
+                            },
+                            {
+                                value: dataMap.chartData[1],
+                                name: '平均水平',
+                                label: {
+                                show: true,
+                                formatter: function (params) {
+                                    return params.value;
+                                    }
+                                },
+                                areaStyle: {
+                                    color: '#EC70C0',
+                                    opacity: 0.1
+                                }
+                            }
+                        ]
                     }
                 ]
             }
@@ -120,5 +156,5 @@ export default{
 
 </script>
 <template>
-    <div ref="radar" :id="chartName" style="width: 100%; height: 400px"></div>
+    <div ref="radar_3" :id="chartName" style="width: 100%; height: 400px"></div>
 </template>
