@@ -1,15 +1,16 @@
-<script>
-import { getCurrentInstance, onMounted , reactive, toRefs, onUnmounted, watch} from 'vue';
+<script setup>
+import { getCurrentInstance, onMounted , reactive, toRefs, onUnmounted, watch, watchEffect} from 'vue';
 
-export default{
-    name:'radar_3',
-    props:{
-        chartName:String,
-        x_Axis:Array,
-        chartData:Array,
-    },
-    setup(props){
-        const dataMap = reactive({
+
+var    name = 'radar_3'
+const props = defineProps({
+    chartName:String,
+    x_Axis:Array,
+    chartData:Array,
+})    // {
+        
+    // },
+        var dataMap = reactive({
             chartName: props.chartName,
             x_Axis: props.x_Axis,
             chartData: props.chartData,
@@ -61,14 +62,14 @@ export default{
                 series: [
                     {
                         name: '个人综合素养水平',
-                        data: dataMap.chartData[0],
+                        data: props.chartData[0],
                         type: 'line',
                         smooth: true,
                         
                     },
                     {
                         name: '平均水平',
-                        data: dataMap.chartData[1],
+                        data: props.chartData[1],
                         type: 'line',
                         smooth: true
                     },
@@ -96,7 +97,10 @@ export default{
             // 绘制图表
             chartOpen()
         });
-
+        // watchEffect(()=>{
+        //     dataMap.chartData = props.chartData
+        //     console.log(1)
+        // })
         watch(() => props.chartData,
             (count, prevCount) => {
                 // 监听数据变了  就重新绘制一遍  也就是大佬们说的  "切记，数据变化后需要再次调init方法刷线图表"
@@ -110,15 +114,17 @@ export default{
 
         onUnmounted(() => {
             //销毁
+            let internalInstance = getCurrentInstance();
+            let echarts = internalInstance.appContext.config.globalProperties.$echarts;
             echarts.dispose(dataMap.myChart);
             dataMap.myChart = null;
         })
 
-        return {
-            ...toRefs(dataMap),
-        }
-    }
-}
+        // return {
+        //     ...toRefs(dataMap),
+        // }
+    
+
 
 
 
