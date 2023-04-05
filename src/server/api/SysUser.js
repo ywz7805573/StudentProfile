@@ -53,11 +53,21 @@ router.get('/getdata', (req,res) => {
     const params = req.query
     const sql = `SELECT * FROM studata`
     conn.query(sql, function (err, result) {
-        console.log(result)
+        console.log(params)
         res.json(result)
       })
 })
-
+router.get('/getdataByID', (req,res) => {
+  const params = req.query
+  // const params = req.body
+  // var params = url.parse(req.url, true).query;
+  // console.log(params)
+  const sql = `SELECT * FROM studata WHERE ID= ?`
+  conn.query(sql,[params.id], function (err, result) {
+      // console.log(result)
+      res.json(result)
+    })
+})
 // 接口：用户管理分页接口查询
 router.get('/getlist', (req, res) => {
   const params = req.query

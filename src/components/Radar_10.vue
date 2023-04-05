@@ -1,13 +1,12 @@
 <script setup>
+import * as echarts from 'echarts'
+import "echarts"
 import { getCurrentInstance, onMounted , reactive, toRefs, onUnmounted, watch} from 'vue';
-
-
     var name = 'radar_10'
     const props = defineProps({
         chartName:String,
         chartData:Object,
     })
-
         var dataMap = reactive({
             chartName: props.chartName,
             chartData: props.chartData,
@@ -15,7 +14,7 @@ import { getCurrentInstance, onMounted , reactive, toRefs, onUnmounted, watch} f
             myChart: null,
         })
         const chartPrepare = () => {
-            console.log(dataMap.chartData);
+            console.log(11);
             
             dataMap.option = {
                 color: ['rgba(64, 119, 255, 0.6)', 'rgba(236, 112, 192, 0.6)'],
@@ -79,13 +78,26 @@ import { getCurrentInstance, onMounted , reactive, toRefs, onUnmounted, watch} f
             }
         }
         // 绘制图表
+        var chart = null;
         const chartOpen = () => {
+            if(chart == null){
+                console.log(2.1)
+                chart = echarts.init(document.getElementById(dataMap.chartName))
+                chart.setOption(dataMap.option, true);
+                dataMap.myChart = chart
+            }
+            else{
+                console.log(2.2)
+                chart.setOption(dataMap.option, true);
+                dataMap.myChart = chart
+            }
+            console.log(22)
             // 这个true可以看官方文档 
-            let internalInstance = getCurrentInstance();
-            let echarts = internalInstance.appContext.config.globalProperties.$echarts;
-            const chart = echarts.init(document.getElementById(dataMap.chartName))
-            chart.setOption(dataMap.option, true);
-            dataMap.myChart = chart
+            // let internalInstance = getCurrentInstance();
+            // let echarts = internalInstance.appContext.config.globalProperties.$echarts;
+            // const chart = echarts.init(document.getElementById(dataMap.chartName))
+            // chart.setOption(dataMap.option, true);
+            // dataMap.myChart = chart
             
 
             // window.onresize = function() { // 自适应大小
@@ -127,5 +139,5 @@ import { getCurrentInstance, onMounted , reactive, toRefs, onUnmounted, watch} f
 
 </script>
 <template>
-    <div ref="radar_3" :id="chartName" style="width: 100%; height: 400px"></div>
+    <div ref="radar_10" :id="chartName" style="width: 100%; height: 400px"></div>
 </template>

@@ -5,7 +5,9 @@ import Bar from '../components/Bar.vue'
 import radar_3 from '../components/Radar_3.vue'
 import radar_10 from '../components/Radar_10.vue'
 import line_smooth from '../components/Line_smooth.vue'
+import sortbar from '../components/SortBar.vue'
 import {  onMounted, reactive, ref } from 'vue'
+import axios from 'axios'
 
 var a = 80
 
@@ -24,8 +26,13 @@ let chartData_10 = reactive({
 let chartData_line = reactive({
   value : data_10
 })
-
-let x_Axis_ximu = ref(data_ximu)
+let dimensions_sortbar = reactive({
+  value: []
+})
+let chartData_sortbar = reactive({
+  value : []
+})
+let dimensions_ximu = ref(data_ximu)
 var that = this
 function test(){
   a = a + 1
@@ -37,6 +44,36 @@ function test(){
   chartData_10.value = data_10
 
 };
+var id
+var sortbar_show = false
+async function getdataByID(){
+  id = '10000001'
+  var data = []
+  await axios.get('http://localhost:3000/api/sysuser/getdataByID',{
+    params:{
+      id : id
+    }
+  })
+  .then(response => {
+    console.log(response)
+    data = response.data
+    // console.log(data[100])
+    for (let item in data[0]){
+  console.log(item)
+  let list = []
+  dimensions_sortbar.value.push(item)
+  list.push(item)
+  list.push(data[0][item])
+  chartData_sortbar.value.push(list)
+    }
+  })
+  console.log('sortbar')
+  sortbar_show = true
+}
+console.log(chartData_sortbar.value)
+onMounted(() => {
+  getdataByID()
+})
 
 
 </script>
@@ -45,10 +82,14 @@ function test(){
     <radar_3 :chartData = "chartData_3" :chartName="'radar_3'"></radar_3>
   </div>
   <div>
-    <radar_10 :key="a" :chartData = "chartData_10.value" :chartName="'radar_10'"></radar_10>
+    <radar_10  :key="chartData_10.value" :chartData = "chartData_10.value" :chartName="'radar_10'"></radar_10>
   </div>
   <div>
-    <line_smooth :key="a" :x_Axis="x_Axis_ximu"  :chartData = "chartData_line.value" :chartName="'line_smooth'"></line_smooth>
+    <line_smooth :key="chartData_line.value" :dimensions="dimensions_ximu"  :chartData = "chartData_line.value" :chartName="'line_smooth'"></line_smooth>
   </div>
-  <button @click="test"></button>
+  <div :v-if="sortbar_show">
+    <sortbar  :key="id"   :chartData = "chartData_sortbar.value" :chartName="'sortbar'"></sortbar>
+  </div>
+  <!-- <button>asd</button> -->
+  <button @click="test">aaa</button>
 </template>

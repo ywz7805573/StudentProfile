@@ -5,14 +5,14 @@ import { getCurrentInstance, onMounted , reactive, toRefs, onUnmounted, watch, w
 var    name = 'radar_3'
 const props = defineProps({
     chartName:String,
-    x_Axis:Array,
+    dimensions:Array,
     chartData:Array,
 })    // {
         
     // },
         var dataMap = reactive({
             chartName: props.chartName,
-            x_Axis: props.x_Axis,
+            dimensions: props.dimensions,
             chartData: props.chartData,
             option: {},
             myChart: null,
@@ -53,7 +53,7 @@ const props = defineProps({
                     type: 'category',
                     boundaryGap: false,
                     // data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                    data: dataMap.x_Axis,
+                    data: dataMap.dimensions,
                     smooth: true
                 },
                 yAxis: {
