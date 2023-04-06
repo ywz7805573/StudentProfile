@@ -88,7 +88,7 @@ onMounted(() => {
     <line_smooth :key="chartData_line.value" :dimensions="dimensions_ximu"  :chartData = "chartData_line.value" :chartName="'line_smooth'"></line_smooth>
   </div>
   <div :v-if="sortbar_show">
-    <sortbar  :key="id"   :chartData = "chartData_sortbar.value" :chartName="'sortbar'"></sortbar>
+    <sortbar  :key="chartData_sortbar.value"   :chartData = "chartData_sortbar.value" :chartName="'sortbar'"></sortbar>
   </div>
   <!-- <button>asd</button> -->
   <button @click="test">aaa</button>

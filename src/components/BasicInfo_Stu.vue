@@ -27,6 +27,7 @@ student_info.school = school
 const props = defineProps( {
 })
 
+
 </script>
 
 
