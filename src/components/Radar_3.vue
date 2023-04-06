@@ -18,14 +18,23 @@ export default{
             console.log(dataMap.chartData);
            // 绘制图表需要的数据
             dataMap.option = {
+                tooltip: {
+                    trigger: 'item',
+                    show: true,
+                },
                 color: ['rgba(64, 119, 255, 0.6)', 'rgba(236, 112, 192, 0.6)'],
                 title: {
-                    text: '学生综合素养：3大维度'
+                    text: '学生综合素养：3大维度',
+                    left: 'center',
                 },
                 legend: {
+                    top: '8%',
+                    
                     data: ['个人综合素养水平', '平均水平']
                 },
                 radar: {
+                    center : ['50%','60%'],
+                    radius: '80%',
                     // shape: 'circle',
                     indicator: [
                     { name: '自主发展', max: 100 },
@@ -35,6 +44,7 @@ export default{
                 },
                 series: [
                     {
+                       
                         name: '学生综合素养对比',
                         type: 'radar',
                         data:[
@@ -115,5 +125,5 @@ export default{
 }
 </script>
 <template>
-    <div ref="radar_3" :id="chartName" style="width: 100%; height: 400px"></div>
+    <div ref="radar_3" :id="chartName" style="width: 100%; height: 100%"></div>
 </template>

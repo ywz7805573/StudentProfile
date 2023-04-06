@@ -17,14 +17,23 @@ import { getCurrentInstance, onMounted , reactive, toRefs, onUnmounted, watch} f
             console.log(11);
             
             dataMap.option = {
+                tooltip: {
+                    trigger: 'item',
+                    show: true,
+                },
                 color: ['rgba(64, 119, 255, 0.6)', 'rgba(236, 112, 192, 0.6)'],
                 title: {
-                    text: '学生综合素养：10类指标'
+                    left: 'center',
+                    text: '学生综合素养：10类指标',
+                    
                 },
                 legend: {
+                    top: '8%',
                     data: ['个人综合素养水平', '平均水平']
                 },
                 radar: {
+                    center : ['50%','60%'],
+                    radius: '80%',
                     // shape: 'circle',
                     indicator: [
                     { name: '身心健康', max: 100 },
@@ -139,5 +148,5 @@ import { getCurrentInstance, onMounted , reactive, toRefs, onUnmounted, watch} f
 
 </script>
 <template>
-    <div ref="radar_10" :id="chartName" style="width: 100%; height: 400px"></div>
+    <div ref="radar_10" :id="chartName" style="width: 100%; height: 100%"></div>
 </template>

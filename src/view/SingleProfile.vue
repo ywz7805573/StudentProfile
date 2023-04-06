@@ -78,10 +78,10 @@ onMounted(() => {
 
 </script>
 <template>
-  <div>
+  <div style="height: 600px;width: 800px;">
     <radar_3 :chartData = "chartData_3" :chartName="'radar_3'"></radar_3>
   </div>
-  <div>
+  <div style="height: 600px;width: 800px;">
     <radar_10  :key="chartData_10.value" :chartData = "chartData_10.value" :chartName="'radar_10'"></radar_10>
   </div>
   <div>
