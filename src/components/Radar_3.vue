@@ -28,13 +28,13 @@ export default{
                     left: 'center',
                 },
                 legend: {
-                    top: '8%',
+                    top: '7%',
                     
                     data: ['个人综合素养水平', '平均水平']
                 },
                 radar: {
-                    center : ['50%','60%'],
-                    radius: '80%',
+                    center : ['50%','70%'],
+                    radius: '100%',
                     // shape: 'circle',
                     indicator: [
                     { name: '自主发展', max: 100 },

@@ -1,13 +1,13 @@
 <template>
 <!--  -->
-<table>
-			<thead>
-				<tr>
+<el-table>
+			<el-thead>
+				<el-tr>
 					<th>基本信息</th>
 					<th>家庭信息</th>
 					<th>学校信息</th>
-				</tr>
-			</thead>
+				</el-tr>
+			</el-thead>
 			<tbody>
 				<tr>
 					<td>姓名: {{ student.name }}</td>
@@ -80,7 +80,7 @@
 					<td></td>
 				</tr>
 			</tbody>
-		</table>
+		</el-table>
 </template>
 
 

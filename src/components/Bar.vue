@@ -1,11 +1,10 @@
-<script>
+<script setup>
 import { getCurrentInstance, onMounted } from "vue";
+import "echarts"
 //  按需引入 echarts
 import * as echarts from "echarts";
-export default{
-    setup(){
         let internalInstance = getCurrentInstance();
-        let echarts = internalInstance.appContext.config.globalProperties.$echarts;
+        // let echarts = internalInstance.appContext.config.globalProperties.$echarts;
         onMounted(() => {
             const dom = document.getElementById('bar');
             const bar = echarts.init(dom);
@@ -30,8 +29,6 @@ export default{
             }
             bar.setOption(option)
         })
-    }
-}
 </script>
 
 <template>
