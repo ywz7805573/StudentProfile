@@ -6,6 +6,7 @@ import radar_3 from '../components/Radar_3.vue'
 import radar_10 from '../components/Radar_10.vue'
 import line_smooth from '../components/Line_smooth.vue'
 import sortbar from '../components/SortBar.vue'
+import pie from '../components/Pie.vue'
 import StuBasicInfo from '../components/StuBasicInfo.vue'
 import {  onMounted, reactive, ref } from 'vue'
 import axios from 'axios'
@@ -81,33 +82,38 @@ onMounted(() => {
 <template>
   <div style="width: 100%;height: 100vh;">
 
-    <el-row style="height: 10%;">
+    <el-row style="height: 8%;">
     <el-col :span="24" style="height: 100%;">
       <div style="height: 100%;" class="grid-content bg-purple">header</div>
     </el-col>
 
   </el-row>
-  <el-row style="height: 90%;">
-    <el-col :span="3" style=" width: 20%;height: 100%;">
+  <el-row style="height: 92%;">
+    <el-col :span="2" style=" width: 20%;height: 100%;">
       <div style="height: 100%;" class="grid-content bg-purple-light">左侧边栏</div>
     </el-col>
-    <el-col :span="5" style="height: 100%;">
+    <el-col :span="6" style="height: 100%;">
     <div>
       <StuBasicInfo></StuBasicInfo>
     </div>
   </el-col>
   <el-col :span="8" >
-    <div style=" height: 100%;">
+    <div style=" height: 50%;">
       <radar_3 style="height: 100%;" :chartData = "chartData_3" :chartName="'radar_3'" ></radar_3>
     </div>
-    
+    <pie style="margin: 50px;" :chartName="'pie'"></pie>
   </el-col>
   <el-col :span="8">
+    <div style=" height: 50%;">
     <radar_10  :key="chartData_10.value" :chartData = "chartData_10.value" :chartName="'radar_10'"></radar_10>
+  </div>
+  <div style=" height: 50%;">
+      <radar_3 style="height: 100%;" :chartData = "chartData_3" :chartName="'radar_3'" ></radar_3>
+    </div>
   </el-col>
 </el-row>
   
-
+  <pie :chartName="'pie'"></pie>
   </div>
   
 
